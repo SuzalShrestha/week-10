@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 require("express-async-errors");
 app.use(express.json()); // for parsing application/json
+require("dotenv").config();
+console.log(process.env.NODE_ENV);
 const dogRouter = require("./routes/dogs");
 const logger = (req, res, next) => {
   console.log(req.method, req.path);
@@ -29,10 +31,19 @@ app.post("/test-json", (req, res, next) => {
 app.use("/dogs", dogRouter);
 // For testing express-async-errors
 app.get("/test-error", async (req, res) => {
-  throw new Error("Hello World!");
+  const error=new Error("Hello World!");
+  error.statusCode=400;
+  next(error);
 });
 
 app.use("/static", express.static("assets"));
+app.use((err, req, res, next) => {
+  console.log(err);
+  if(process.env.NODE_ENV!=='production'){
+    return res.status(500).json({error:err.message,stack:err.stack});
+  }
+  res.status(err.statusCode || 500).json({ error: err.message});
+});
 app.use((req, res, next) => {
   res.status(404).json({ error: "The requested resource could not be found." });
 });
