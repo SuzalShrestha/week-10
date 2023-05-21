@@ -26,7 +26,6 @@ const foods = [
 ];
 
 // ------------------------------  MIDDLEWARES ------------------------------ 
-
 const validateFoodInfo = (req, res, next) => {
   if (!req.body || !req.body.name) {
     const err = new Error("Food must have a name");
@@ -60,3 +59,8 @@ const createFood = (req, res) => {
 // ------------------------------  ROUTER ------------------------------  
 
 // Your code here
+const express=require("express");
+const foodRouter=express.Router({mergeParams:true});
+foodRouter.get("/",getFoodsByDogId);
+foodRouter.post("/",validateFoodInfo,createFood);
+module.exports=foodRouter;

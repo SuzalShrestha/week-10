@@ -29,20 +29,21 @@ app.post("/test-json", (req, res, next) => {
 });
 
 app.use("/dogs", dogRouter);
+
 // For testing express-async-errors
 app.get("/test-error", async (req, res) => {
-  const error=new Error("Hello World!");
-  error.statusCode=400;
+  const error = new Error("Hello World!");
+  error.statusCode = 400;
   next(error);
 });
 
 app.use("/static", express.static("assets"));
 app.use((err, req, res, next) => {
   console.log(err);
-  if(process.env.NODE_ENV!=='production'){
-    return res.status(500).json({error:err.message,stack:err.stack});
+  if (process.env.NODE_ENV !== "production") {
+    return res.status(500).json({ error: err.message, stack: err.stack });
   }
-  res.status(err.statusCode || 500).json({ error: err.message});
+  res.status(err.statusCode || 500).json({ error: err.message });
 });
 app.use((req, res, next) => {
   res.status(404).json({ error: "The requested resource could not be found." });
