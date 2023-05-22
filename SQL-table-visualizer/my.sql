@@ -14,3 +14,4 @@ Table music{
 
 
 Ref: "color"."id" < "music"."name"
+-- website for data visualization https://dbdiagram.io/
