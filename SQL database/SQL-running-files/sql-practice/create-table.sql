@@ -1,5 +1,3 @@
--- Step 1
--- Your code here
 CREATE TABLE pies (
   flavor VARCHAR(255) PRIMARY KEY,
   price FLOAT
