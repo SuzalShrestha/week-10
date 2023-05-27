@@ -1,0 +1,90 @@
+-- Your code here
+--1
+INSERT INTO customers(name,phone,email)
+VALUES ('Rachel',111111111,'rachel@gmail.com');
+SELECT * FROM customers;
+SELECT * FROM coffee_orders;
+--2
+-- Rachel purchases a coffee
+UPDATE customers
+SET points = points + 1
+WHERE name = 'Rachel';
+INSERT INTO coffee_orders(is_redeemed)
+VALUES (0);
+SELECT * FROM customers;
+SELECT * FROM coffee_orders;
+--3
+INSERT INTO customers(name,phone,email)
+VALUES ('Monica',222222222,'monica@friends.show'),('Phoebe',333333333,'phoebe@friends');
+SELECT * FROM customers;
+SELECT * FROM coffee_orders;
+--4
+-- Phoebe purchases a coffee
+UPDATE customers
+SET points = points + 3
+WHERE name = 'Phoebe';
+INSERT INTO coffee_orders(is_redeemed)
+VALUES (0),(0),(0);
+SELECT * FROM customers;
+SELECT * FROM coffee_orders;
+--5
+--Rachel and Monica each purchase 4 a coffee
+UPDATE customers
+SET points = points + 4
+WHERE name = 'Rachel' OR name = 'Monica';
+INSERT INTO coffee_orders(is_redeemed)
+VALUES (0),(0),(0),(0),(0),(0),(0),(0);
+SELECT * FROM customers;
+SELECT * FROM coffee_orders;
+--6
+SELECT points FROM customers
+WHERE name='Monica';
+--7
+SELECT points FROM customers
+WHERE name='Rachel';
+--Rachel wants to check her total points. Redeem her points for a coffee if she has enough points. If she doesn't, she wants to purchase a coffee.
+UPDATE customers
+SET points =points-10
+WHERE name='Rachel' AND points>=10;
+INSERT INTO coffee_orders(is_redeemed)
+VALUES (1);
+SELECT * FROM customers;
+SELECT * FROM coffee_orders;
+--8
+INSERT INTO customers(name,email)
+VALUES ('Joey','joey@friends.show'),('Chandler','chandler@friends.show'),('Ross','ross@friends.show');
+SELECT * FROM customers;
+SELECT * FROM coffee_orders;
+--9
+UPDATE customers
+SET points = points + 6
+WHERE name = 'Ross';
+INSERT INTO coffee_orders(is_redeemed)
+VALUES (0),(0),(0),(0),(0),(0);
+SELECT * FROM customers;
+SELECT * FROM coffee_orders;
+--10
+UPDATE customers
+SET points = points + 3
+WHERE name = 'Monica';
+INSERT INTO coffee_orders(is_redeemed)
+VALUES (0),(0),(0);
+SELECT * FROM customers;
+SELECT * FROM coffee_orders;
+--11
+SELECT points FROM customers
+WHERE name='Phoebe';
+--Redeem Phoebe's points for a coffee if she has enough points.
+UPDATE customers
+SET points =points-10
+WHERE name='Phoebe' AND points>=10;
+INSERT INTO coffee_orders(is_redeemed)
+VALUES (1);
+--Purchase a coffee for Phoebe if she doesn't have enough points.
+
+
+
+
+
+
+
