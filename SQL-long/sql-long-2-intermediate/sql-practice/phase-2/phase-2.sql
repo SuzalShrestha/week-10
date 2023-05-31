@@ -14,14 +14,14 @@ CREATE TABLE toys(
     id INTEGER PRIMARY KEY,
     name TEXT,
     cat_id INTEGER,
-    FOREIGN KEY(cat_id) REFERENCES cats(id) ON DELETE CASCADE
+    FOREIGN KEY(cat_id) REFERENCES cats(id)
 );
 CREATE TABLE cat_owners(
     id INTEGER PRIMARY KEY,
     cat_id INTEGER,
     owner_id INTEGER,
-    FOREIGN KEY(cat_id) REFERENCES cats(id) ON DELETE CASCADE,
-    FOREIGN KEY(owner_id) REFERENCES owners(id) ON DELETE CASCADE
+    FOREIGN KEY(cat_id) REFERENCES cats(id),
+    FOREIGN KEY(owner_id) REFERENCES owners(id)
 );
 INSERT INTO owners
   (first_name, last_name)
